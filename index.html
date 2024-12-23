@@ -32,6 +32,18 @@
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <!-- docsify-themeable -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
-
+  <script>
+    // 检查是否存在重定向信息
+    const redirect = sessionStorage.getItem('redirect');
+    if (redirect) {
+      // 清除存储的重定向信息
+      sessionStorage.removeItem('redirect');
+      // 使用 pushState 将路径添加到历史记录
+      const path = redirect.startsWith('/guardia-docs/') 
+        ? redirect.slice('/guardia-docs/'.length) 
+        : redirect;
+      history.pushState(null, null, path);
+    }
+  </script>
 </body>
 </html>
